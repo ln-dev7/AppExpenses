@@ -13,5 +13,5 @@
         </label>
         <input type="text" id="montant" class="form-control" placeholder="Montant de la depense">
     </div>
-    <button type="submit" class="btn btn-primary">Ajouter le depense</button>
+    <button type="submit" class="btn btn-primary">Ajouter la depense</button>
 </form>
