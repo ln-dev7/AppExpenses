@@ -7,14 +7,18 @@
     // {
     //   id: uuidv4(),
     //   nom: "22",
-    //   montant: "dssd",
+    //   montant: 6,
     // },
     // {
     //   id: uuidv4(),
     //   nom: "2",
-    //   montant: "dsd",
+    //   montant: 4,
     // },
   ];
+
+  $: total = tableauCartes.reduce((acc, curr) => {
+    return acc += curr.montant;
+  }, 0)
 
   function ajoutDepense(e) {
     let nvObjb = { id: uuidv4(), nom: e.detail.nom, montant: e.detail.montant };
@@ -37,7 +41,7 @@
   {#if tableauCartes.length === 0}
     <h3 class="mt-3 lead font-weight-bold">Aucune depense pour le moment</h3>
   {:else}
-    <h2 class="my-4">Total des depenses :</h2>
+    <h2 class="my-4">Total des depenses : <span class="total-price">{total} XAF</span></h2>
     {#each tableauCartes as depense (depense.id)}
       <CarteDepense
         on:suppr-depense={supprCarte}
@@ -48,3 +52,9 @@
     {/each}
   {/if}
 </div>
+
+<style>
+    .total-price{
+        color: crimson;
+    }
+</style>

@@ -20,7 +20,7 @@
         <label for="depense" class="lead font-weight-bold">
             Nom de la depnse
         </label>
-        <input bind:value={objNvDep.nom} type="text" id="depense" class="form-control" placeholder="Rentrez une nouvelle depense">
+        <input bind:value={objNvDep.nom} type="text" id="depense" class="form-control" placeholder="Entrez une nouvelle depense">
     </div>
     <div class="form-group mb-3">
         <label for="montant" class="lead font-weight-bold">
