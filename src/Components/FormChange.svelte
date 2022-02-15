@@ -46,7 +46,8 @@
     z-index: 5;
   }
   .carte {
-    width: 500px;
+    max-width: 600px;
+    width: 97%;
     border: 1px solid #333;
     padding: 15px;
     background: #fff;
