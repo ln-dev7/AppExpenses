@@ -5,16 +5,16 @@
   import FormChange from "./FormChange.svelte";
 
   let tableauCartes = [
-    {
-      id: uuidv4(),
-      nom: "a",
-      montant: 1,
-    },
-    {
-      id: uuidv4(),
-      nom: "b",
-      montant: 2,
-    },
+    // {
+    //   id: uuidv4(),
+    //   nom: "a",
+    //   montant: 1,
+    // },
+    // {
+    //   id: uuidv4(),
+    //   nom: "b",
+    //   montant: 2,
+    // },
   ];
 
   $: total = tableauCartes.reduce((acc, curr) => {
