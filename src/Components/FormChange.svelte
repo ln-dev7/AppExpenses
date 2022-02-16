@@ -36,6 +36,7 @@
     />
   </div>
   <button type="submit" class="btn btn-primary">Changer</button>
+  <button on:click={ferModal}  class="btn btn-secondary">Annuler</button>
 </form>
 
 <style>

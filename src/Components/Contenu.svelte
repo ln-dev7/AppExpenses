@@ -2,10 +2,21 @@
   import CarteDepense from "./CarteDepense.svelte";
   import FormDepense from "./FormDepense.svelte";
   import { v4 as uuidv4 } from "uuid";
-  import storeData from "./../Store/depenses";
-  import { onDestroy } from "svelte";
+  //import storeData from "./../Store/depenses";
+  import {tableauStock} from "../Store/store"
+  import {store} from "../Store/store"
 
   let tableauCartes = [
+    // {
+    //   id: uuidv4(),
+    //   nom: "a",
+    //   montant: 1,
+    // },
+    // {
+    //   id: uuidv4(),
+    //   nom: "b",
+    //   montant: 2,
+    // },
   ];
 
   $: total = tableauCartes.reduce((acc, curr) => {
@@ -25,12 +36,10 @@
     }, 0);
   }
 
-  let tableauStock;
-  storeData.subscribe((valeur) => {
-    tableauStock = valeur;
-    console.log(tableauStock);
-  });
-  // storeData.update(val => val + 10)
+  if ($store.length != 0){
+    let tableauCartesClone = $store;
+    tableauCartes = tableauCartesClone.splice(1, tableauCartesClone.length);
+  }
 
   function ajoutDepense(e) {
     let nvObjb = { id: uuidv4(), nom: e.detail.nom, montant: e.detail.montant };
@@ -39,15 +48,7 @@
       alert("Veuillez entrer tout les champs !");
     } else {
       tableauCartes = [...tableauCartes, nvObjb];
-      storeData.update((valeur) => {
-        return [
-          ...valeur, {
-            id: nvObjb.id,
-            nom: nvObjb.nom,
-            montant: nvObjb.montant,
-          },
-        ];
-      });
+      $store = [...$store, nvObjb];
     }
   }
 
@@ -57,8 +58,10 @@
         (dep) => dep.id !== e.detail.id
       );
       tableauCartes = tableauCartes.filter((dep) => dep.id !== e.detail.id);
+      $store = $store.filter((dep) => dep.id !== e.detail.id);
     } else {
       tableauCartes = tableauCartes.filter((dep) => dep.id !== e.detail.id);
+      $store = $store.filter((dep) => dep.id !== e.detail.id);
     }
   }
 
