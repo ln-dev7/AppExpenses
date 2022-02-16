@@ -2,18 +2,10 @@
   import CarteDepense from "./CarteDepense.svelte";
   import FormDepense from "./FormDepense.svelte";
   import { v4 as uuidv4 } from "uuid";
+  import storeData from "./../Store/depenses";
+  import { onDestroy } from "svelte";
 
   let tableauCartes = [
-    {
-      id: uuidv4(),
-      nom: "a",
-      montant: 1,
-    },
-    {
-      id: uuidv4(),
-      nom: "b",
-      montant: 2,
-    },
   ];
 
   $: total = tableauCartes.reduce((acc, curr) => {
@@ -33,6 +25,13 @@
     }, 0);
   }
 
+  let tableauStock;
+  storeData.subscribe((valeur) => {
+    tableauStock = valeur;
+    console.log(tableauStock);
+  });
+  // storeData.update(val => val + 10)
+
   function ajoutDepense(e) {
     let nvObjb = { id: uuidv4(), nom: e.detail.nom, montant: e.detail.montant };
 
@@ -40,6 +39,15 @@
       alert("Veuillez entrer tout les champs !");
     } else {
       tableauCartes = [...tableauCartes, nvObjb];
+      storeData.update((valeur) => {
+        return [
+          ...valeur, {
+            id: nvObjb.id,
+            nom: nvObjb.nom,
+            montant: nvObjb.montant,
+          },
+        ];
+      });
     }
   }
 
@@ -63,7 +71,7 @@
       el.nom.includes(contenuRecherche)
     );
     verCon = true;
-    if(contenuRecherche == ""){
+    if (contenuRecherche == "") {
       tableauRecherche = [];
       verCon = false;
     }
@@ -72,7 +80,6 @@
 
 <div class="container">
   <FormDepense on:nv-depense={ajoutDepense} on:recherche-dep={goRecherche} />
-
   {#if tableauCartes.length === 0}
     <h3 class="mt-3 lead font-weight-bold">Aucune depense pour le moment</h3>
   {:else if tableauRecherche.length === 0 && !verCon}
