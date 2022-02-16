@@ -9,12 +9,6 @@ import { persistStore } from "./persistStore";
 //   },
 // ]);
 
-export const tableauStock = [
-    {
-        id: 'default',
-        nom: 'default',
-        montant: 7
-    },
-]
+export const tableauStock = [];
 
-export const store = persistStore('data', tableauStock)
+export const store = persistStore("data", tableauStock);

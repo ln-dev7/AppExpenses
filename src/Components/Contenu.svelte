@@ -3,21 +3,14 @@
   import FormDepense from "./FormDepense.svelte";
   import { v4 as uuidv4 } from "uuid";
   //import storeData from "./../Store/depenses";
-  import {tableauStock} from "../Store/store"
-  import {store} from "../Store/store"
+  import { tableauStock } from "../Store/store";
+  import { store } from "../Store/store";
 
-  let tableauCartes = [
-    // {
-    //   id: uuidv4(),
-    //   nom: "a",
-    //   montant: 1,
-    // },
-    // {
-    //   id: uuidv4(),
-    //   nom: "b",
-    //   montant: 2,
-    // },
-  ];
+  let tableauCartes = [];
+
+  if ($store.length != 0) {
+    tableauCartes = $store;
+  }
 
   $: total = tableauCartes.reduce((acc, curr) => {
     return (acc += curr.montant);
@@ -34,11 +27,6 @@
     total = tableauCartes.reduce((acc, curr) => {
       return (acc += curr.montant);
     }, 0);
-  }
-
-  if ($store.length != 0){
-    let tableauCartesClone = $store;
-    tableauCartes = tableauCartesClone.splice(1, tableauCartesClone.length);
   }
 
   function ajoutDepense(e) {
