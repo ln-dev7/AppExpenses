@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
 import FormChange from "./FormChange.svelte";
+import FormConfirm from "./FormConfirm.svelte";
 
   const dispatch = createEventDispatcher();
 
@@ -24,6 +25,16 @@ import FormChange from "./FormChange.svelte";
   function ferModal() {
     ouvr = false;
   }
+
+  $: ouvrSupp = false;
+
+  function ouvrModalSupp(e) {
+    ouvrSupp = !ouvrSupp;
+  }
+  function ferModalSupp() {
+    ouvrSupp = false;
+  }
+
   function modifDep(e) {
       if (e.detail.nom == "" || e.detail.montant == "") {
         alert("Veuillez entrer tout les champs !");
@@ -54,7 +65,7 @@ import FormChange from "./FormChange.svelte";
           /></svg
         >
       </i>
-      <i class="trash" on:click={supprDep}>
+      <i class="trash" on:click={ouvrModalSupp}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -75,6 +86,10 @@ import FormChange from "./FormChange.svelte";
     on:fer-mod={ferModal}
     on:modif-depense={modifDep}
   />
+{/if}
+
+{#if ouvrSupp}
+  <FormConfirm on:fer-modSupp={ferModalSupp} on:conf-supp={supprDep} />
 {/if}
 
 <style>

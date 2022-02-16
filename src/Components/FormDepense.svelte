@@ -18,7 +18,7 @@
 <form class="nt-5" on:submit|preventDefault={nouvelleDepense}>
     <div class="form-group mb-3">
         <label for="depense" class="lead font-weight-bold">
-            Nom de la depnse
+            Nom de la depense
         </label>
         <input bind:value={objNvDep.nom} type="text" id="depense" class="form-control" placeholder="Entrez une nouvelle depense">
     </div>
