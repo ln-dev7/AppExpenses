@@ -2,7 +2,6 @@
   import CarteDepense from "./CarteDepense.svelte";
   import FormDepense from "./FormDepense.svelte";
   import { v4 as uuidv4 } from "uuid";
-  import FormChange from "./FormChange.svelte";
 
   let tableauCartes = [
     {
@@ -22,12 +21,21 @@
   }, 0);
 
   function modDep(e) {
-    tableauCartes.forEach((el) => {
-      if (el.id === e.detail.id) {
-        el.nom = e.detail.nom;
-        el.montant = e.detail.montant;
-      }
-    });
+    if (tableauRecherche.length !== 0) {
+      tableauRecherche.forEach((el) => {
+        if (el.id === e.detail.id) {
+          el.nom = e.detail.nom;
+          el.montant = e.detail.montant;
+        }
+      });
+    } else {
+      tableauCartes.forEach((el) => {
+        if (el.id === e.detail.id) {
+          el.nom = e.detail.nom;
+          el.montant = e.detail.montant;
+        }
+      });
+    }
 
     total = tableauCartes.reduce((acc, curr) => {
       return (acc += curr.montant);
@@ -45,16 +53,34 @@
   }
 
   function supprCarte(e) {
-    tableauCartes = tableauCartes.filter((dep) => dep.id !== e.detail.id);
+    if (tableauRecherche.length !== 0) {
+      tableauRecherche = tableauRecherche.filter(
+        (dep) => dep.id !== e.detail.id
+      );
+    } else {
+      tableauCartes = tableauCartes.filter((dep) => dep.id !== e.detail.id);
+    }
+  }
+
+  let tableauRecherche = [];
+  let contenuRecherche;
+  let verCon = false;
+  function goRecherche(e) {
+    contenuRecherche = e.detail.txt;
+    tableauRecherche = tableauCartes.filter((el) =>
+      el.nom.includes(contenuRecherche)
+    );
+    verCon = true;
   }
 </script>
 
 <div class="container">
-  <FormDepense on:nv-depense={ajoutDepense} />
+  <FormDepense on:nv-depense={ajoutDepense} on:recherche-dep={goRecherche} />
 
   {#if tableauCartes.length === 0}
     <h3 class="mt-3 lead font-weight-bold">Aucune depense pour le moment</h3>
-  {:else}
+    <p>1</p>
+  {:else if tableauRecherche.length === 0 && !verCon}
     <h2 class="my-4">
       Total des depenses : <span class="total-price">{total} XAF</span>
     </h2>
@@ -67,6 +93,26 @@
         montant={depense.montant}
       />
     {/each}
+    <p>2</p>
+  {:else if tableauRecherche.length === 0 && verCon}
+    <h3 class="mt-3 lead font-weight-bold">
+      {contenuRecherche} n'est pas dans vos depense
+    </h3>
+    <p>3</p>
+  {:else}
+    <h2 class="my-4">
+      Total des depenses : <span class="total-price">{total} XAF</span>
+    </h2>
+    {#each tableauRecherche as depense (depense.id)}
+      <CarteDepense
+        on:suppr-depense={supprCarte}
+        on:mod-depense={modDep}
+        id={depense.id}
+        nom={depense.nom}
+        montant={depense.montant}
+      />
+    {/each}
+    <p>4</p>
   {/if}
 </div>
 
