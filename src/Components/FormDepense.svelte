@@ -23,14 +23,14 @@
 <form class="nt-5" on:submit|preventDefault={nouvelleDepense}>
   <div class="form-group mb-3">
     <label for="depense" class="lead font-weight-bold">
-      Nom de la depense
+      Nom de la dépense
     </label>
     <input
       bind:value={objNvDep.nom}
       type="text"
       id="depense"
       class="form-control"
-      placeholder="Entrez une nouvelle depense"
+      placeholder="Entrez une nouvelle dépense"
     />
   </div>
   <div class="form-group mb-3">
@@ -40,15 +40,15 @@
       type="number"
       id="montant"
       class="form-control"
-      placeholder="Montant de la depense"
+      placeholder="Montant de la dépense en XAF"
     />
   </div>
-  <button type="submit" class="btn btn-primary">Ajouter la depense</button>
+  <button type="submit" class="btn btn-outline-primary">Ajouter la dépense</button>
   <div class="form-group mt-3">
     <input
       type="search"
       class="form-control"
-      placeholder="Rechercher une depense"
+      placeholder="Rechercher une dépense"
       bind:value={recherche}
       on:input={rechercheFunc}
     />
@@ -62,4 +62,6 @@
       width: 100%;
     }
   }
+
+  
 </style>

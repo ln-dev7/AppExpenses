@@ -9,5 +9,4 @@ import Navbar from "./Components/Navbar.svelte";
 <Contenu />
 
 <style>
-
 </style>
