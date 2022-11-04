@@ -78,13 +78,15 @@
       Total des dépenses : <span class="total-price">{total} XAF</span>
     </h2>
     {#each tableauCartes as depense (depense.id)}
-      <CarteDepense
+      <div class="card-all">
+        <CarteDepense
         on:suppr-depense={supprCarte}
         on:mod-depense={modDep}
         id={depense.id}
         nom={depense.nom}
         montant={depense.montant}
       />
+      </div>
     {/each}
   {:else if tableauRecherche.length === 0 && verCon}
     <h3 class="mt-3 lead font-weight-bold">
@@ -92,13 +94,15 @@
     </h3>
   {:else}
     {#each tableauRecherche as depense (depense.id)}
-      <CarteDepense
+      <div class="card-filter">
+        <CarteDepense
         on:suppr-depense={supprCarte}
         on:mod-depense={modDep}
         id={depense.id}
         nom={depense.nom}
         montant={depense.montant}
       />
+      </div>
     {/each}
   {/if}
 </div>
@@ -111,5 +115,13 @@
 
   .container{
     margin-top: 32px;
+  }
+
+  .card-all {
+
+  }
+
+  .card-filter {
+    
   }
 </style>

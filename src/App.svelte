@@ -1,12 +1,16 @@
 <script>
-import Contenu from "./Components/Contenu.svelte";
-import Navbar from "./Components/Navbar.svelte";
-
-	
+  import Container from "./Components/Container.svelte";
+  import Navbar from "./Components/Navbar.svelte";
 </script>
 
-<Navbar />
-<Contenu />
+<main class="main">
+  <Navbar />
+  <Container />
+</main>
 
 <style>
+    .main{
+        min-height: 100vh;
+        background: #F8FAFC;
+    }
 </style>
