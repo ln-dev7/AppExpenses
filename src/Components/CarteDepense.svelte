@@ -1,13 +1,15 @@
 <script>
   import { createEventDispatcher } from "svelte";
-import FormChange from "./FormChange.svelte";
-import FormConfirm from "./FormConfirm.svelte";
+  import FormChange from "./FormChange.svelte";
+  import FormConfirm from "./FormConfirm.svelte";
 
   const dispatch = createEventDispatcher();
 
   export let nom;
   export let montant;
   export let id;
+  export let description;
+  export let date;
 
   function supprDep() {
     dispatch("suppr-depense", { id: id });
@@ -17,7 +19,7 @@ import FormConfirm from "./FormConfirm.svelte";
     dispatch("ouvrir-modal", { id: id });
   }
 
-   $: ouvr = false;
+  $: ouvr = false;
 
   function ouvrModal(e) {
     ouvr = !ouvr;
@@ -36,22 +38,45 @@ import FormConfirm from "./FormConfirm.svelte";
   }
 
   function modifDep(e) {
-      if (e.detail.nom == "" || e.detail.montant == "") {
-        alert("Veuillez entrer tout les champs !");
-      } else {
-        nom = e.detail.nom;
-        montant = e.detail.montant;
+    if (
+      e.detail.nom == "" ||
+      e.detail.montant == "" ||
+      e.detail.description == ""
+    ) {
+      alert("Veuillez entrer tout les champs !");
+    } else {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      let mm = today.getMonth() + 1; // Months start at 0!
+      let dd = today.getDate();
 
-        ouvr = false;
-      }
-      dispatch("mod-depense", { id: id, nom: nom, montant: montant });
+      if (dd < 10) dd = "0" + dd;
+      if (mm < 10) mm = "0" + mm;
+
+      const formattedToday = dd + "-" + mm + "-" + yyyy;
+
+      nom = e.detail.nom;
+      montant = e.detail.montant;
+      description = e.detail.description;
+      date = `Modifié le  ${formattedToday}`;
+      ouvr = false;
     }
+    dispatch("mod-depense", {
+      id: id,
+      nom: nom,
+      montant: montant,
+      description: description,
+      date: date,
+    });
+  }
 </script>
 
 <div class="card my-3">
   <div class="card-body">
     <h3>{nom}</h3>
-    <p>{montant} XAF</p>
+    <h2>{montant} XAF</h2>
+    <p>{description}</p>
+    <h5>{date}</h5>
     <div class="card-right">
       <i class="edit" on:click={ouvrModal}>
         <svg
@@ -82,10 +107,7 @@ import FormConfirm from "./FormConfirm.svelte";
 </div>
 
 {#if ouvr}
-  <FormChange
-    on:fer-mod={ferModal}
-    on:modif-depense={modifDep}
-  />
+  <FormChange on:fer-mod={ferModal} on:modif-depense={modifDep} />
 {/if}
 
 {#if ouvrSupp}

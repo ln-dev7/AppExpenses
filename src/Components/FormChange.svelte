@@ -5,15 +5,21 @@
 
   export let nomChg = "";
   export let montantChg = "";
+  export let descriptionChg = "";
 
   function modifDep(e) {
-    dispatch("modif-depense", { nom: nomChg, montant: montantChg });
+    dispatch("modif-depense", {
+      nom: nomChg,
+      montant: montantChg,
+      description: descriptionChg,
+    });
     nomChg = "";
     montantChg = "";
+    descriptionChg = "";
   }
 
   function ferModal(e) {
-    dispatch("fer-mod")
+    dispatch("fer-mod");
   }
 </script>
 
@@ -35,8 +41,16 @@
       placeholder="Renomer le montant"
     />
   </div>
+  <div class="form-group mb-3">
+    <input
+      bind:value={descriptionChg}
+      type="text"
+      class="form-control"
+      placeholder="Renomer la description"
+    />
+  </div>
   <button type="submit" class="btn btn-primary">Changer</button>
-  <button on:click={ferModal}  class="btn btn-secondary">Annuler</button>
+  <button on:click={ferModal} class="btn btn-secondary">Annuler</button>
 </form>
 
 <style>

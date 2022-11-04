@@ -6,12 +6,14 @@
   let objNvDep = {
     nom: "",
     montant: "",
+    description: "",
   };
   function nouvelleDepense(e) {
-    dispatch("nv-depense", { nom: objNvDep.nom, montant: objNvDep.montant });
+    dispatch("nv-depense", { nom: objNvDep.nom, montant: objNvDep.montant, description: objNvDep.description });
 
     objNvDep.nom = "";
     objNvDep.montant = "";
+    objNvDep.description = "";
   }
 
   export let recherche = "";
@@ -41,6 +43,18 @@
       id="montant"
       class="form-control"
       placeholder="Montant de la dépense en XAF"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <label for="depense" class="lead font-weight-bold">
+      Description de la dépense
+    </label>
+    <input
+      bind:value={objNvDep.description}
+      type="text"
+      id="depense"
+      class="form-control"
+      placeholder="Entrez une description"
     />
   </div>
   <button type="submit" class="btn btn-outline-primary">Ajouter la dépense</button>
