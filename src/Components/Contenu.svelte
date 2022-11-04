@@ -75,7 +75,7 @@
     <h3 class="mt-3 lead font-weight-bold">Aucune depense pour le moment</h3>
   {:else if tableauRecherche.length === 0 && !verCon}
     <h2 class="my-4">
-      Total des depenses : <span class="total-price">{total} XAF</span>
+      Total des dépenses : <span class="total-price">{total} XAF</span>
     </h2>
     {#each tableauCartes as depense (depense.id)}
       <CarteDepense
@@ -105,6 +105,11 @@
 
 <style>
   .total-price {
-    color: crimson;
+    color: rgba(240, 33, 74, 0.814);
+    font-weight: 700;
+  }
+
+  .container{
+    margin-top: 32px;
   }
 </style>
