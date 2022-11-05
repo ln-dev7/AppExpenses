@@ -71,43 +71,23 @@
   }
 </script>
 
-<div class="card my-3">
-  <div class="card-body">
-    <h3>{nom}</h3>
-    <h2>{montant} XAF</h2>
-    <p>{description}</p>
-    <h5>{date}</h5>
-    <div class="card-right">
-      <i class="edit" on:click={ouvrModal}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
-          ><path fill="none" d="M0 0h24v24H0z" /><path
-            d="M12.9 6.858l4.242 4.243L7.242 21H3v-4.243l9.9-9.9zm1.414-1.414l2.121-2.122a1 1 0 0 1 1.414 0l2.829 2.829a1 1 0 0 1 0 1.414l-2.122 2.121-4.242-4.242z"
-            fill="rgba(0,0,0)"
-          /></svg
-        >
-      </i>
-      <i class="trash" on:click={ouvrModalSupp}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="24"
-          height="24"
-          ><path fill="none" d="M0 0h24v24H0z" /><path
-            d="M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8zm3-3V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5h5zm2-1v1h6V4H9zm0 8v6h2v-6H9zm4 0v6h2v-6h-2z"
-            fill="rgba(255,0,0,1)"
-          /></svg
-        >
-      </i>
-    </div>
-  </div>
+<div class="card">
+  <h3>{nom}</h3>
+  <p>{description}</p>
+  <h2>{montant} XAF</h2>
+  <h5>{date}</h5>
+  <button class="card-edit" on:click={ouvrModal}>Modifier</button>
+  <button class="card-delete" on:click={ouvrModalSupp}>Supprimer</button>
 </div>
 
 {#if ouvr}
-  <FormChange on:fer-mod={ferModal} on:modif-depense={modifDep} />
+  <FormChange
+    on:fer-mod={ferModal}
+    on:modif-depense={modifDep}
+    defaultNom={nom}
+    defaultMontant={montant}
+    defaultDescription={description}
+  />
 {/if}
 
 {#if ouvrSupp}
@@ -116,25 +96,49 @@
 
 <style>
   .card {
-    position: relative;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .card h2 {
+    font-size: 35px;
   }
   .card h3 {
     font-size: 35px;
+  }
+  .card h5 {
+    font-size: 15px;
+    color: #334155;
+    font-weight: 300;
+    font-style: italic;
+    opacity: 0.5;
+    text-align: right;
   }
   .card p {
     font-weight: 300;
     font-size: 15px;
   }
-  i {
+
+  button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
     cursor: pointer;
-    margin: 0 0.5rem;
+    transition: all 0.3s ease;
   }
-  i svg {
-    width: 30px;
+
+  button:hover {
+    opacity: 0.8;
   }
-  .card-right {
-    position: absolute;
-    top: 40px;
-    right: 30px;
+
+  .card-edit {
+    background: #4f46e5;
+  }
+
+  .card-delete {
+    background: #333;
   }
 </style>

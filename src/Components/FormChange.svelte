@@ -3,6 +3,10 @@
 
   const dispatch = createEventDispatcher();
 
+  export let defaultNom;
+  export let defaultMontant;
+  export let defaultDescription;
+
   export let nomChg = "";
   export let montantChg = "";
   export let descriptionChg = "";
@@ -30,7 +34,7 @@
       bind:value={nomChg}
       type="text"
       class="form-control"
-      placeholder="Renomer la depense"
+      placeholder={defaultNom}
     />
   </div>
   <div class="form-group mb-3">
@@ -38,7 +42,7 @@
       bind:value={montantChg}
       type="number"
       class="form-control"
-      placeholder="Renomer le montant"
+      placeholder={defaultMontant}
     />
   </div>
   <div class="form-group mb-3">
@@ -46,7 +50,7 @@
       bind:value={descriptionChg}
       type="text"
       class="form-control"
-      placeholder="Renomer la description"
+      placeholder={defaultDescription}
     />
   </div>
   <button type="submit" class="btn btn-primary">Changer</button>

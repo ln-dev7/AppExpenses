@@ -57,7 +57,7 @@
       placeholder="Entrez une description"
     />
   </div>
-  <button type="submit" class="btn btn-outline-primary">Ajouter la dépense</button>
+  <button type="submit" class="add">Ajouter la dépense</button>
   <div class="form-group mt-3">
     <input
       type="search"
@@ -71,11 +71,20 @@
 </form>
 
 <style>
+  .add {
+    background-color: #0EA5E9;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
   @media only screen and (max-width: 600px) {
     button {
       width: 100%;
     }
   }
-
-  
 </style>

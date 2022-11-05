@@ -23,7 +23,7 @@
         el.date = e.detail.date;
       }
     });
-    
+
     store.set(tableauCartes);
 
     total = tableauCartes.reduce((acc, curr) => {
@@ -140,7 +140,7 @@
   }
 
   .container {
-    margin-top: 32px;
+    margin-top: 2rem;
   }
 
   .card-all {
