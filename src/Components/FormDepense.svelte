@@ -35,7 +35,6 @@
           bind:value={objNvDep.nom}
           type="text"
           id="depense"
-          class="form-input-name"
           placeholder="Entrez une nouvelle dépense"
         />
       </div>
@@ -45,7 +44,6 @@
           bind:value={objNvDep.montant}
           type="number"
           id="amount"
-          class="form-input-amount"
           placeholder="Montant de la dépense en XAF"
         />
       </div>
@@ -55,7 +53,6 @@
           bind:value={objNvDep.description}
           type="text"
           id="description"
-          class="form-input-description"
           placeholder="Entrez une description"
         />
       </div>
