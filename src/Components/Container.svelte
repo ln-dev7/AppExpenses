@@ -92,8 +92,8 @@
 </script>
 
 <div class="container">
+  <FormDepense on:nv-depense={ajoutDepense} on:recherche-dep={goRecherche} />
   <div class="container-main">
-    <FormDepense on:nv-depense={ajoutDepense} on:recherche-dep={goRecherche} />
     {#if tableauCartes.length === 0}
       <h3>Aucune depense pour le moment</h3>
     {:else if tableauRecherche.length === 0 && !verCon}
@@ -141,9 +141,11 @@
   .container {
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem 0;
+    padding: 0 0 2rem 0;
+    background: #f8fafc;
   }
 
   .container-main {
@@ -162,7 +164,8 @@
     font-weight: 700;
   }
 
-  .card-all, .card-filter {
+  .card-all,
+  .card-filter {
     width: 100%;
   }
 </style>

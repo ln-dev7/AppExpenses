@@ -11,7 +11,8 @@
 <style>
     .main{
         min-height: 100vh;
-        background: #F8FAFC;
+        background: #fff;
+        background-position: center;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
