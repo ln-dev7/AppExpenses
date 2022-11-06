@@ -9,7 +9,11 @@
     description: "",
   };
   function nouvelleDepense(e) {
-    dispatch("nv-depense", { nom: objNvDep.nom, montant: objNvDep.montant, description: objNvDep.description });
+    dispatch("nv-depense", {
+      nom: objNvDep.nom,
+      montant: objNvDep.montant,
+      description: objNvDep.description,
+    });
 
     objNvDep.nom = "";
     objNvDep.montant = "";
@@ -22,43 +26,43 @@
   }
 </script>
 
-<form class="nt-5" on:submit|preventDefault={nouvelleDepense}>
-  <div class="form-group mb-3">
-    <label for="depense" class="lead font-weight-bold">
-      Nom de la dépense
-    </label>
-    <input
-      bind:value={objNvDep.nom}
-      type="text"
-      id="depense"
-      class="form-control"
-      placeholder="Entrez une nouvelle dépense"
-    />
+<form class="form" on:submit|preventDefault={nouvelleDepense}>
+  <div>
+    <div class="form-input">
+      <label for="depense"> Nom de la dépense </label>
+      <input
+        bind:value={objNvDep.nom}
+        type="text"
+        id="depense"
+        class="form-input-name"
+        placeholder="Entrez une nouvelle dépense"
+      />
+    </div>
+    <div class="form-input">
+      <label for="amount"> Montant </label>
+      <input
+        bind:value={objNvDep.montant}
+        type="number"
+        id="amount"
+        class="form-input-amount"
+        placeholder="Montant de la dépense en XAF"
+      />
+    </div>
   </div>
-  <div class="form-group mb-3">
-    <label for="montant" class="lead font-weight-bold"> Montant </label>
-    <input
-      bind:value={objNvDep.montant}
-      type="number"
-      id="montant"
-      class="form-control"
-      placeholder="Montant de la dépense en XAF"
-    />
-  </div>
-  <div class="form-group mb-3">
-    <label for="depense" class="lead font-weight-bold">
-      Description de la dépense
-    </label>
-    <input
-      bind:value={objNvDep.description}
-      type="text"
-      id="depense"
-      class="form-control"
-      placeholder="Entrez une description"
-    />
+  <div>
+    <div class="form-input">
+      <label for="description"> Description de la dépense </label>
+      <input
+        bind:value={objNvDep.description}
+        type="text"
+        id="description"
+        class="form-input-description"
+        placeholder="Entrez une description"
+      />
+    </div>
   </div>
   <button type="submit" class="add">Ajouter la dépense</button>
-  <div class="form-group mt-3">
+  <div>
     <input
       type="search"
       class="form-control"
@@ -67,12 +71,15 @@
       on:input={rechercheFunc}
     />
   </div>
-  <hr>
+  <hr />
 </form>
 
 <style>
+  .form {
+    width: 100%;
+  }
   .add {
-    background-color: #0EA5E9;
+    background-color: #0ea5e9;
     font-weight: 500;
     padding: 0.5rem 1rem;
     border: none;

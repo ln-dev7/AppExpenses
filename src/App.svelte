@@ -12,5 +12,9 @@
     .main{
         min-height: 100vh;
         background: #F8FAFC;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
     }
 </style>

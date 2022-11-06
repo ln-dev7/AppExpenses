@@ -8,6 +8,7 @@
 
 <style>
   .header {
+    width: 100%;
     background: #0f172a;
     display: flex;
     justify-content: space-between;
@@ -26,14 +27,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 5px;
-    font-size: 14px;
-    font-weight: 600;
+    gap: 1rem;
     padding: 10px 20px;
-    border-radius: 4px;
+    border-radius: .25rem;
     border: 2px solid #fff;
     transition: all 0.3s ease;
   }
+
+  .header a span {
+    font-weight: 600;
+  }
+
   .header a:hover {
     opacity: .8;
     }

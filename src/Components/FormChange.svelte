@@ -7,9 +7,9 @@
   export let defaultMontant;
   export let defaultDescription;
 
-  export let nomChg = "";
-  export let montantChg = "";
-  export let descriptionChg = "";
+  export let nomChg = defaultNom;
+  export let montantChg = defaultMontant;
+  export let descriptionChg = defaultDescription;
 
   function modifDep(e) {
     dispatch("modif-depense", {

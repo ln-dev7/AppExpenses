@@ -92,69 +92,77 @@
 </script>
 
 <div class="container">
-  <FormDepense on:nv-depense={ajoutDepense} on:recherche-dep={goRecherche} />
-  {#if tableauCartes.length === 0}
-    <h3 class="mt-3 lead font-weight-bold">Aucune depense pour le moment</h3>
-  {:else if tableauRecherche.length === 0 && !verCon}
-    <h2 class="my-4">
-      Total des dépenses : <span class="total-price">{total} XAF</span>
-    </h2>
-    <div class="card-all">
-      {#each tableauCartes as depense (depense.id)}
-        <CarteDepense
-          on:suppr-depense={supprCarte}
-          on:mod-depense={modDep}
-          id={depense.id}
-          nom={depense.nom}
-          montant={depense.montant}
-          description={depense.description}
-          date={depense.date}
-        />
-      {/each}
-    </div>
-  {:else if tableauRecherche.length === 0 && verCon}
-    <h3 class="mt-3 lead font-weight-bold">
-      {contenuRecherche} n'est pas dans vos depense
-    </h3>
-  {:else}
-    <div class="card-filter">
-      {#each tableauRecherche as depense (depense.id)}
-        <CarteDepense
-          on:suppr-depense={supprCarte}
-          on:mod-depense={modDep}
-          id={depense.id}
-          nom={depense.nom}
-          montant={depense.montant}
-          description={depense.description}
-          date={depense.date}
-        />
-      {/each}
-    </div>
-  {/if}
+  <div class="container-main">
+    <FormDepense on:nv-depense={ajoutDepense} on:recherche-dep={goRecherche} />
+    {#if tableauCartes.length === 0}
+      <h3>Aucune depense pour le moment</h3>
+    {:else if tableauRecherche.length === 0 && !verCon}
+      <div class="container-price">
+        <h2>
+          Total des dépenses : <span class="total-price">{total} XAF</span>
+        </h2>
+      </div>
+      <div class="card-all">
+        {#each tableauCartes as depense (depense.id)}
+          <CarteDepense
+            on:suppr-depense={supprCarte}
+            on:mod-depense={modDep}
+            id={depense.id}
+            nom={depense.nom}
+            montant={depense.montant}
+            description={depense.description}
+            date={depense.date}
+          />
+        {/each}
+      </div>
+    {:else if tableauRecherche.length === 0 && verCon}
+      <h3 class="mt-3 lead font-weight-bold">
+        {contenuRecherche} n'est pas dans vos depense
+      </h3>
+    {:else}
+      <div class="card-filter">
+        {#each tableauRecherche as depense (depense.id)}
+          <CarteDepense
+            on:suppr-depense={supprCarte}
+            on:mod-depense={modDep}
+            id={depense.id}
+            nom={depense.nom}
+            montant={depense.montant}
+            description={depense.description}
+            date={depense.date}
+          />
+        {/each}
+      </div>
+    {/if}
+  </div>
 </div>
 
 <style>
+  .container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+
+  .container-main {
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
   .total-price {
-    color: rgba(240, 33, 74, 0.814);
+    color: #f0214ad0;
     font-weight: 700;
   }
 
-  .container {
-    margin-top: 2rem;
-  }
-
-  .card-all {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1rem;
-  }
-
-  @media screen and (max-width: 768px) {
-    .card-all {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  .card-filter {
+  .card-all, .card-filter {
+    width: 100%;
   }
 </style>

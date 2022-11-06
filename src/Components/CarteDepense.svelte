@@ -96,18 +96,23 @@
 
 <style>
   .card {
+    width: 300px;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
   }
   .card h2 {
-    font-size: 35px;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4f46e5;
   }
   .card h3 {
     font-size: 35px;
   }
   .card h5 {
+    width: 100%;
     font-size: 15px;
     color: #334155;
     font-weight: 300;
@@ -116,16 +121,20 @@
     text-align: right;
   }
   .card p {
+    width: 100%;
     font-weight: 300;
     font-size: 15px;
+    color: #4b5563;
+    word-break: break-all;
+    opacity: .8;
   }
 
   button {
+    width: 100%;
     margin-top: 0.5rem;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
-    color: #fff;
     cursor: pointer;
     transition: all 0.3s ease;
   }
@@ -136,9 +145,11 @@
 
   .card-edit {
     background: #4f46e5;
+    color: #fff;
   }
 
   .card-delete {
-    background: #333;
+    background: #EEF2FF;
+    color: #4f46e5;
   }
 </style>
