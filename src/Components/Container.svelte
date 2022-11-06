@@ -58,7 +58,9 @@
       alert("Veuillez entrer tout les champs !");
     } else {
       tableauCartes = [...tableauCartes, nvObjb];
+      tableauCartes = tableauCartes.reverse();
       $store = [...$store, nvObjb];
+      $store = $store.reverse();
     }
   }
 
@@ -81,7 +83,7 @@
   function goRecherche(e) {
     contenuRecherche = e.detail.txt;
     tableauRecherche = tableauCartes.filter((el) =>
-      el.nom.includes(contenuRecherche)
+      el.nom.toLowerCase().includes(contenuRecherche.toLowerCase())
     );
     verCon = true;
     if (contenuRecherche == "") {
@@ -95,11 +97,11 @@
   <FormDepense on:nv-depense={ajoutDepense} on:recherche-dep={goRecherche} />
   <div class="container-main">
     {#if tableauCartes.length === 0}
-      <h3>Aucune depense pour le moment</h3>
+      <h3>Vous n'avez aucune depense pour le moment</h3>
     {:else if tableauRecherche.length === 0 && !verCon}
       <div class="container-price">
         <h2>
-          Total des dépenses : <span class="total-price">{total} XAF</span>
+          Total des dépenses : <span>{total} XAF</span>
         </h2>
       </div>
       <div class="card-all">
@@ -116,8 +118,8 @@
         {/each}
       </div>
     {:else if tableauRecherche.length === 0 && verCon}
-      <h3 class="mt-3 lead font-weight-bold">
-        {contenuRecherche} n'est pas dans vos depense
+      <h3>
+        <span>{contenuRecherche}</span> n'est pas dans vos depense
       </h3>
     {:else}
       <div class="card-filter">
@@ -150,16 +152,43 @@
 
   .container-main {
     position: relative;
-    width: 100%;
+    width: 95%;
     max-width: 1280px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 1rem;
   }
 
-  .total-price {
+  h3 {
+    font-weight: 500;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  h3 span {
+    color: #0EA5E9;
+    font-weight: 600;
+  }
+
+  .container-price {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: .75rem;
+  }
+  
+  .container-price h2 {
+    font-weight: 500;
+    width:fit-content;
+    padding: .5rem 1rem;
+    background: #fff;
+    border: 1px solid #716bea39;
+    border-top: none;
+  }
+
+  .container-price span {
     color: #f0214ad0;
     font-weight: 700;
   }
@@ -167,5 +196,9 @@
   .card-all,
   .card-filter {
     width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
 </style>

@@ -153,6 +153,12 @@
     background: #0ea4e920;
   }
 
+  @media screen and (max-width: 460px) {
+    .add {
+      width: 100%;
+    }
+  }
+
   .form-search {
     width: 100%;
     border: none;

@@ -71,13 +71,15 @@
   }
 </script>
 
-<div class="card">
-  <h3>{nom}</h3>
-  <p>{description}</p>
-  <h2>{montant} XAF</h2>
-  <h5>{date}</h5>
-  <button class="card-edit" on:click={ouvrModal}>Modifier</button>
-  <button class="card-delete" on:click={ouvrModalSupp}>Supprimer</button>
+<div class="container">
+  <div class="card">
+    <h3>{nom}</h3>
+    <p>{description}</p>
+    <h2>{montant} XAF</h2>
+    <h5>{date}</h5>
+    <button class="card-edit" on:click={ouvrModal}>Modifier</button>
+    <button class="card-delete" on:click={ouvrModalSupp}>Supprimer</button>
+  </div>
 </div>
 
 {#if ouvr}
@@ -95,26 +97,55 @@
 {/if}
 
 <style>
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% / 3);
+    padding: .5rem;
+    height: max-content;
+  }
+  @media screen and (max-width: 1000px) {
+    .container {
+    width: calc(100% / 2);
+    }
+  }
+  @media screen and (max-width: 720px) {
+    .container {
+      width: 100%;
+    }
+  }
   .card {
-    width: 300px;
+    width: 100%;
+    background: #fff;
+    border-radius: .5rem;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    border: 1px solid #EEF2FF;
+  }
+  .card:hover{
+    box-shadow: 0 0 0 2px #726bea;
   }
   .card h2 {
     width: 100%;
     font-size: 1.5rem;
+    padding: .75rem 0 0 0;
     font-weight: 700;
     color: #4f46e5;
+    word-break: break-all;
   }
   .card h3 {
-    font-size: 35px;
+    font-size: 2rem;
+    font-weight: 600;
+    word-break: break-all;
   }
   .card h5 {
     width: 100%;
     font-size: 15px;
     color: #334155;
+    word-break: break-all;
     font-weight: 300;
     font-style: italic;
     opacity: 0.5;
@@ -132,6 +163,7 @@
   button {
     width: 100%;
     margin-top: 0.5rem;
+    font-weight: 500;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
