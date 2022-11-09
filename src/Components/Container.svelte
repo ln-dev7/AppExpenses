@@ -147,11 +147,14 @@
     align-items: center;
     justify-content: center;
     padding: 0 0 2rem 0;
-    background: #f8fafc;
+    background: #ffffff;
   }
 
   .container-main {
     position: relative;
+    background: #f0f4feaf;
+    padding: 20px;
+    border-radius: 10px;
     width: 95%;
     max-width: 1280px;
     display: flex;
