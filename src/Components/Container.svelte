@@ -152,8 +152,6 @@
 
   .container-main {
     position: relative;
-    padding: 20px;
-    border-radius: 10px;
     width: 95%;
     max-width: 1280px;
     display: flex;

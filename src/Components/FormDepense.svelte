@@ -77,6 +77,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid #716bea39;
   }
 
   .form-container {
