@@ -74,14 +74,16 @@
   .form {
     width: 100%;
     padding: 1.5rem 0;
-    background: #F0F4FEAF;
-    border-bottom: 1px solid #716bea39;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid #716bea39;
   }
 
   .form-container {
+    background: #e9eefcaf;
+    padding: 20px;
+    border-radius: 10px;
     width: 95%;
     max-width: 1280px;
     display: flex;
@@ -98,7 +100,7 @@
   @media screen and (max-width: 580px) {
     .form-add {
       grid-template-areas: "nom" "montant" "description";
-      grid-gap: .5rem;
+      grid-gap: 0.5rem;
     }
   }
 
@@ -169,6 +171,6 @@
     font-weight: 400;
   }
   .form-search:focus {
-    box-shadow: 0 0 0 2px #0EA5E9;
+    box-shadow: 0 0 0 2px #0ea5e9;
   }
 </style>

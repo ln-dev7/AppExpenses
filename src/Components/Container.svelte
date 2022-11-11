@@ -167,7 +167,7 @@
   }
 
   h3 span {
-    color: #0EA5E9;
+    color: #0ea5e9;
     font-weight: 600;
   }
 
@@ -176,13 +176,13 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-bottom: .75rem;
+    margin-bottom: 0.75rem;
   }
-  
+
   .container-price h2 {
     font-weight: 500;
-    width:fit-content;
-    padding: .5rem 1rem;
+    width: fit-content;
+    padding: 0.5rem 1rem;
     background: #fff;
     border: 1px solid #716bea39;
     border-top: none;
